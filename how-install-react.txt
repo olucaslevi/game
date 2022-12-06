@@ -1,0 +1,254 @@
+Primeiro, npm init -y p/ criar o package.json
+Segundo, npm install react react-dom --save   p/ instalar o react e seus pacotes.
+Terceiro, npm install webpack webpack-dev-server webpack-cli --save   p/ poder criar os componentes no browser.
+Quarto, BABEL > npm install babel-core babel-loader babel-preset-env babel-preset-react babel-webpack-plugin --save-dev  
+
+
+class component inutil :
+
+// class App extends Component{
+//    render(){
+//       const [isConnected, setIsConnected] = useState(socket.connected);
+//       const [lastPong, setLastPong] = useState(null);
+//       var players = [];
+//       let currentPlayer;
+//       const sprite = new Image();
+//       sprite.src='./assets/sprite.png';
+//       const map = new Image();
+//       map.src='./assets/map.png';
+//       const BACKGROUND_COLOUR = '#231F20';
+
+//       const gameScreen = document.getElementById("gameScreen");
+
+//       let canvas, ctx;
+
+//       const GRIDSIZE = 32;
+
+//       // socket stuff
+
+//       useEffect(() => {
+//          socket.on('connect', () => {
+//            setIsConnected(true);
+//          });
+     
+//          socket.on('disconnect', () => {
+//            setIsConnected(false);
+//          });
+     
+//          socket.on('pong', () => {
+//            setLastPong(new Date().toISOString());
+//          });
+     
+//          return () => {
+//            socket.off('connect');
+//            socket.off('disconnect');
+//            socket.off('pong');
+//          };
+//        }, []);
+
+//        const sendPing = () => {
+//          socket.emit('ping');
+//        }
+      
+
+//       class Player {
+//          // socket.id , username, 
+//          constructor(id, name, img, color){
+//                this.id = id;
+//                this.name = name;
+//                this.img = img;
+//                this.color = color;
+//                this.pos = {x: 10, y: 12};
+//                this.vel = {x: 0, y: 0};
+//          }
+      
+//          updatePosition(){ // This function will be modified to update the player position
+//                // send the player position to the server
+//                this.pos.x += this.vel.x;
+//                this.pos.y += this.vel.y;
+      
+//                // collision with walls
+               
+//                if(this.pos.x < 0){ 
+//                   this.pos.x = 0;
+//                }
+//                if(this.pos.x > 25){
+//                   this.pos.x = 25;
+//                }
+//                if(this.pos.y < 0){
+//                   this.pos.y = 0;
+//                }
+//                if(this.pos.y > 17){
+//                   this.pos.y = 17;
+//                }
+               
+      
+//          }
+//          draw(ctx, size){ // ok
+      
+//                ctx.drawImage(sprite, this.pos.x * size, this.pos.y * size - 10, 32,48);
+//          }
+//          move(dir){
+//                switch(dir){
+//                   case 'Up':
+//                      this.vel.x = 0;
+//                      this.vel.y = -1;
+//                      break;
+//                   case 'Down':
+//                      this.vel.x = 0;
+//                      this.vel.y = 1;
+//                      break;
+//                   case 'Left':
+//                      this.vel.x = -1;
+//                      this.vel.y = 0;
+//                      break;
+//                   case 'Right':
+//                      this.vel.x = 1;
+//                      this.vel.y = 0;
+//                      break;
+//                }
+//          }
+//       };
+      
+
+//       function game_loop(socket,currentPlayer) {
+         
+//          // * canvas
+//          const canvas = document.getElementById("canvas"); 
+//          const ctx = canvas.getContext('2d'); //
+         
+         
+//          canvas.width   = 832;
+//          canvas.height = 576;
+      
+//          // ? pinta o canvas de preto.
+//          ctx.fillStyle = BACKGROUND_COLOUR;
+//          ctx.fillRect(0,0,canvas.width, canvas.height);
+      
+         
+//          const drawGrid = (size) => {
+//                // Grid
+//                ctx.drawImage(map,0,0,canvas.width,canvas.height);
+//                ctx.beginPath();
+//                for (let x = 0; x < canvas.width; x += size){
+//                   ctx.moveTo(x,0);
+//                   ctx.lineTo(x,canvas.height);
+//                }
+//                for (let y = 0; y < canvas.height; y += size){
+//                   ctx.moveTo(0,y);
+//                   ctx.lineTo(canvas.width,y);
+//                }
+//                // ctx.stroke();
+               
+//          };
+         
+      
+         
+//          const clear_screen = () => {
+//                ctx.fillStyle = BACKGROUND_COLOUR;
+//                ctx.fillRect(0,0,canvas.width, canvas.height);
+//          };
+//          const reset_screen = () => {
+//                clear_screen();
+//                drawGrid(GRIDSIZE);
+//          };
+      
+//          drawGrid(GRIDSIZE);
+         
+//          socket.emit("join", currentPlayer);
+      
+      
+//          addEventListener("keydown", (event) => {
+//                switch(event.key){
+//                   case "ArrowUp":
+//                      currentPlayer.move("Up");
+//                      break;
+//                   case "ArrowDown":
+//                      currentPlayer.move("Down");
+//                      break;
+//                   case "ArrowLeft":
+//                      currentPlayer.move("Left");
+//                      break;
+//                   case "ArrowRight":
+//                      currentPlayer.move("Right");
+//                      break;
+//                }
+//          });
+      
+//          addEventListener('keypress', (event) => {
+//                if (event.key === 'w'){
+//                   currentPlayer.move('Up');
+//                }
+//                if (event.key === 's'){
+//                   currentPlayer.move('Down');
+//                }
+//                if (event.key === 'a'){
+//                   currentPlayer.move('Left');
+//                }
+//                if (event.key === 'd'){
+//                   currentPlayer.move('Right');
+//                }
+//          });
+         
+//          addEventListener('keyup', (event) => {
+//                if (event.key === 'w'){
+//                   currentPlayer.vel.y = 0;
+//                }
+//                if (event.key === 's'){
+//                   currentPlayer.vel.y = 0;
+//                }
+//                if (event.key === 'a'){
+//                   currentPlayer.vel.x = 0;
+//                }
+//                if (event.key === 'd'){
+//                   currentPlayer.vel.x = 0;
+//                }
+//          });
+      
+//          function drawPlayers(players){
+//                players.forEach((player) => {
+//                   // draw names with color
+//                   ctx.fillStyle = player.color;
+//                   ctx.font = "14px Tahoma";
+//                   // center text
+//                   ctx.textAlign = "center";
+//                   // stroke text
+//                   ctx.strokeText(player.name, player.pos.x * GRIDSIZE + 16, player.pos.y * GRIDSIZE - 10);
+//                   ctx.fillText(player.name, player.pos.x * GRIDSIZE + GRIDSIZE/2, player.pos.y * GRIDSIZE - 10);
+                  
+//                   // draw player
+//                   ctx.drawImage(sprite, player.pos.x * GRIDSIZE, player.pos.y * GRIDSIZE - 10, 32,48);
+//                });
+//          }
+      
+         
+//          /////////////////////////////////////////
+//          //////////////////////////////////////
+//          ////////////////////////////
+//          //////////////////////
+      
+//          function update() {
+//                reset_screen();
+//                currentPlayer.updatePosition();
+//                currentPlayer.draw(ctx, GRIDSIZE);
+               
+//                // ? send the player position to the server
+//                socket.emit("update", currentPlayer);
+               
+//                for (let i = 0; i < players.length; i++){
+//                   drawPlayers(players);
+//                }
+      
+//          }
+//          setInterval(update, 1000/25);
+//       };
+//          return(  
+//             <div id="root">  
+//                <h1>Hello World</h1>
+//                <p>Connected: { '' + isConnected }</p>
+//                <p>Last pong: { lastPong || '-' }</p>
+//                <button onClick={ sendPing }>Send ping</button>
+//             </div>  
+//          );  
+//    }  
+// }  

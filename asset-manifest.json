@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/game/static/js/main.4b6d3008.js",
+    "index.html": "/game/index.html",
+    "main.4b6d3008.js.map": "/game/static/js/main.4b6d3008.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.4b6d3008.js"
+  ]
+}

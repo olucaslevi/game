@@ -15,7 +15,7 @@ import Player from './src/Components/player.js';
 // import chat.js
 import { World } from 'cannon-es';
 
-const socket = io.connect("http://localhost:3000");
+const socket = io.connect("http://142.93.15.138:80");
 
 let currentPlayer;
 let color;

@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/static/js/main.097acdef.js",
-    "index.html": "/index.html",
-    "main.097acdef.js.map": "/static/js/main.097acdef.js.map"
+    "main.js": "/142.93.15.138:3001/static/js/main.097acdef.js",
+    "index.html": "/142.93.15.138:3001/index.html",
+    "main.097acdef.js.map": "/142.93.15.138:3001/static/js/main.097acdef.js.map"
   },
   "entrypoints": [
     "static/js/main.097acdef.js"
